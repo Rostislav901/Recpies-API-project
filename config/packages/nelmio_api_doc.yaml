@@ -1,0 +1,82 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: My api Swagger
+            description:  Api for work with recipes
+            version: 1.0.0
+        paths:
+            /api/recipes/token/refresh:
+                post:
+                    requestBody:
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        refresh_token:
+                                            type: string
+                    responses:
+                        200:
+                            description: Successful token refresh
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                            refresh_token:
+                                                type: string
+
+                        401:
+                            description: Problem with JWT Refresh Token
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            message:
+                                                type: string
+                                            code:
+                                                type: integer
+            /api/recipes/login:
+                post:
+                    requestBody:
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        username:
+                                            type: string
+                                        password:
+                                            type: string
+                    responses:
+                        200:
+                            description: Successful login
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            token:
+                                                type: string
+                                            refresh_token:
+                                                type: string
+
+                        401:
+                            description: Problem with JWT Token
+                            content:
+                                application/json:
+                                    schema:
+                                        type: object
+                                        properties:
+                                            message:
+                                                type: string
+                                            code:
+                                                type: integer
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/api/recipes/ # Accepts routes under /api except /api/doc
+
+
